@@ -1,0 +1,69 @@
+<!ELEMENT airport (airport_id, airport_name, airport_size, airport_latitude, airport_longitude, airport_country, airport_city, airport_traffic_control_tower, airplanes)>
+	<!ELEMENT airport_id (#PCDATA)>
+	<!ELEMENT airport_name (#PCDATA)>
+	<!ELEMENT airport_size (#PCDATA)>
+		<!ATTLIST airport_size type (SmallAirport | MediumAirport | LargeAirport) "SmallAirport">
+	<!ELEMENT airport_latitude (#PCDATA)>
+	<!ELEMENT airport_longitude (#PCDATA)>
+	<!ELEMENT airport_country (#PCDATA)>
+	<!ELEMENT airport_city (#PCDATA)>
+	<!ELEMENT airport_traffic_control_tower (traffic_control_tower_id, traffic_control_tower_airspace, traffic_control_tower_runways, traffic_control_tower_telemetries, traffic_control_tower_control_tower_operators)>
+		<!ELEMENT traffic_control_tower_id (#PCDATA)>
+		<!ELEMENT traffic_control_tower_airspace (airspace_id, airspace_radius, airspace_airspace_class, airspace_airplanes_in_vicinity)>
+			<!ELEMENT airspace_id (#PCDATA)>
+			<!ELEMENT airspace_radius (#PCDATA)>
+			<!ELEMENT airspace_airspace_class (#PCDATA)>
+				<!ATTLIST airspace_airspace_class type (ClassAlpha | ClassBravo | ClassCharlie | ClassDelta) "ClassAlpha">
+			<!ELEMENT airspace_airplanes_in_vicinity (#PCDATA)>
+		<!ELEMENT traffic_control_tower_runways (traffic_control_tower_runway+)>
+			<!ELEMENT traffic_control_tower_runway (runway_id, runway_length, runway_width)>
+				<!ELEMENT runway_id (#PCDATA)>
+				<!ELEMENT runway_length (#PCDATA)>
+				<!ELEMENT runway_width (#PCDATA)>
+		<!ELEMENT traffic_control_tower_telemetries (traffic_control_tower_telemetry*)>
+			<!ELEMENT traffic_control_tower_telemetry (telemetry_id, telemetry_date_time, telemetry_area, telemetry_temperature, telemetry_wind_speed, telemetry_humidity, telemetry_local_atmospheric_pressure)>
+				<!ELEMENT telemetry_id (#PCDATA)>
+				<!ELEMENT telemetry_date_time (#PCDATA)>
+				<!ELEMENT telemetry_area (#PCDATA)>
+				<!ELEMENT telemetry_temperature (#PCDATA)>
+				<!ELEMENT telemetry_wind_speed (#PCDATA)>
+				<!ELEMENT telemetry_humidity (#PCDATA)>
+				<!ELEMENT telemetry_local_atmospheric_pressure (#PCDATA)>
+		<!ELEMENT traffic_control_tower_control_tower_operators (traffic_control_tower_control_tower_operator*)>
+			<!ELEMENT traffic_control_tower_control_tower_operator (person_id, person_first_name, person_last_name, person_date_of_birth, person_age, person_weight)>
+				<!ELEMENT person_id (#PCDATA)>
+				<!ELEMENT person_first_name (#PCDATA)>
+				<!ELEMENT person_last_name (#PCDATA)>
+				<!ELEMENT person_date_of_birth (#PCDATA)>
+				<!ELEMENT person_age (#PCDATA)>
+				<!ELEMENT person_weight (#PCDATA)>
+	<!ELEMENT airplanes (airplane*)>
+		<!ELEMENT airplane (airplane_id, destination_airport, airplane_name, airplane_type, maximum_distance, base_weight, current_weight, maximum_fuel, current_fuel, maximum_passengers, current_passengers, maximum_speed, average_fuel_consumption, crew_members, passengers)>
+			<!ELEMENT airplane_id (#PCDATA)>
+			<!ELEMENT destination_airport (#PCDATA)>
+			<!ELEMENT airplane_name (#PCDATA)>
+			<!ELEMENT airplane_type (#PCDATA)>
+			<!ELEMENT maximum_distance (#PCDATA)>
+			<!ELEMENT base_weight (#PCDATA)>
+			<!ELEMENT current_weight (#PCDATA)>
+			<!ELEMENT maximum_fuel (#PCDATA)>
+			<!ELEMENT current_fuel (#PCDATA)>
+			<!ELEMENT maximum_passengers (#PCDATA)>
+			<!ELEMENT current_passengers (#PCDATA)>
+			<!ELEMENT maximum_speed (#PCDATA)>
+			<!ELEMENT average_fuel_consumption (#PCDATA)>
+			<!ELEMENT crew_members (crew_member+)>
+				<!ELEMENT crew_member (person_id, person_first_name, person_last_name, person_date_of_birth, person_age, person_weight, crew_member_type, crew_member_luggage?)>
+					<!ELEMENT crew_member_type (#PCDATA)>
+						<!ATTLIST crew_member_type type (Pilot | Stewardess) "Pilot">
+					<!ELEMENT crew_member_luggage (id, contents, weight)>
+						<!ELEMENT id (#PCDATA)>
+						<!ELEMENT contents (#PCDATA)>
+						<!ELEMENT weight (#PCDATA)>
+			<!ELEMENT passengers (passenger+)>
+				<!ELEMENT passenger (person_id, person_first_name, person_last_name, person_date_of_birth, person_age, person_weight, passenger_luggage?, passenger_ticket)>
+					<!ELEMENT passenger_luggage (id, contents, weight)>
+					<!ELEMENT passenger_ticket (ticket_id, ticket_destination, ticket_seat)>
+						<!ELEMENT ticket_id (#PCDATA)>
+						<!ELEMENT ticket_destination (#PCDATA)>
+						<!ELEMENT ticket_seat (#PCDATA)>

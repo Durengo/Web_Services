@@ -1,0 +1,5 @@
+/.fleet/
+/.idea/
+/.vscode/
+/task1/target/
+/main.xml

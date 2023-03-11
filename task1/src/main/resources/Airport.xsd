@@ -1,0 +1,197 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="airport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:int" name="airport_id" minOccurs="1" maxOccurs="1"/>
+        <xs:element type="xs:string" name="airport_name" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="airport_size" minOccurs="1" maxOccurs="1">
+		  <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="SmallAirport"/>
+              <xs:enumeration value="MediumAirport"/>
+              <xs:enumeration value="LargeAirport"/>
+            </xs:restriction>
+          </xs:simpleType>
+		</xs:element>
+        <xs:element type="xs:double" name="airport_latitude" minOccurs="1" maxOccurs="1"/>
+        <xs:element type="xs:double" name="airport_longitude" minOccurs="1" maxOccurs="1"/>
+        <xs:element type="xs:string" name="airport_country" minOccurs="1" maxOccurs="1"/>
+        <xs:element type="xs:string" name="airport_city" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="airport_traffic_control_tower" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:int" name="traffic_control_tower_id" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="traffic_control_tower_airspace" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:int" name="airspace_id" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:double" name="airspace_radius" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="airspace_airspace_class" minOccurs="1" maxOccurs="1">
+					  <xs:simpleType>
+						<xs:restriction base="xs:string">
+						  <xs:enumeration value="ClassAlpha"/>
+						  <xs:enumeration value="ClassBravo"/>
+						  <xs:enumeration value="ClassCharlie"/>
+						  <xs:enumeration value="ClassDelta"/>
+						</xs:restriction>
+					  </xs:simpleType>
+					</xs:element>
+                    <xs:element type="xs:int" name="airspace_airplanes_in_vicinity" minOccurs="1" maxOccurs="1"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="traffic_control_tower_runways" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="traffic_control_tower_runway" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:int" name="runway_id" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:double" name="runway_length" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:double" name="runway_width" minOccurs="1" maxOccurs="1"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="traffic_control_tower_telemetries" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="traffic_control_tower_telemetry" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:int" name="telemetry_id" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:dateTime" name="telemetry_date_time" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:double" name="telemetry_area" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:double" name="telemetry_temperature" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:double" name="telemetry_wind_speed" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:double" name="telemetry_humidity" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:double" name="telemetry_local_atmospheric_pressure" minOccurs="1" maxOccurs="1"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="traffic_control_tower_control_tower_operators" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="traffic_control_tower_control_tower_operator" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:int" name="person_id" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:string" name="person_first_name" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:string" name="person_last_name" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:date" name="person_date_of_birth" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:int" name="person_age" minOccurs="1" maxOccurs="1"/>
+                          <xs:element type="xs:double" name="person_weight" minOccurs="1" maxOccurs="1"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="airplanes" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="airplane" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:int" name="airplane_id" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:string" name="destination_airport" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:string" name="airplane_name" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:string" name="airplane_type" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:double" name="maximum_distance" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:double" name="base_weight" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:double" name="current_weight" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:double" name="maximum_fuel" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:double" name="current_fuel" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:int" name="maximum_passengers" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:int" name="current_passengers" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:double" name="maximum_speed" minOccurs="1" maxOccurs="1"/>
+                    <xs:element type="xs:double" name="average_fuel_consumption" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="crew_members" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="crew_member" minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:int" name="person_id" minOccurs="1" maxOccurs="1"/>
+                                <xs:element type="xs:string" name="person_first_name" minOccurs="1" maxOccurs="1"/>
+                                <xs:element type="xs:string" name="person_last_name" minOccurs="1" maxOccurs="1"/>
+                                <xs:element type="xs:date" name="person_date_of_birth" minOccurs="1" maxOccurs="1"/>
+                                <xs:element type="xs:int" name="person_age" minOccurs="1" maxOccurs="1"/>
+                                <xs:element type="xs:double" name="person_weight" minOccurs="1" maxOccurs="1"/>
+                                <xs:element name="crew_member_type" minOccurs="1" maxOccurs="1">
+								  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:enumeration value="Pilot"/>
+                                      <xs:enumeration value="Stewardess"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+								</xs:element>
+								<xs:element name="crew_member_luggage" minOccurs="0" maxOccurs="1">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:int" name="id" minOccurs="1" maxOccurs="1"/>
+                                      <xs:element type="xs:string" name="contents" minOccurs="1" maxOccurs="1"/>
+                                      <xs:element type="xs:double" name="weight" minOccurs="1" maxOccurs="1"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="passengers" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="passenger" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:int" name="person_id" minOccurs="1" maxOccurs="1"/>
+                                <xs:element type="xs:string" name="person_first_name" minOccurs="1" maxOccurs="1"/>
+                                <xs:element type="xs:string" name="person_last_name" minOccurs="1" maxOccurs="1"/>
+                                <xs:element type="xs:date" name="person_date_of_birth" minOccurs="1" maxOccurs="1"/>
+                                <xs:element type="xs:int" name="person_age" minOccurs="1" maxOccurs="1"/>
+                                <xs:element type="xs:double" name="person_weight" minOccurs="1" maxOccurs="1"/>
+                                <xs:element name="passenger_luggage" minOccurs="0" maxOccurs="1">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:int" name="id" minOccurs="1" maxOccurs="1"/>
+                                      <xs:element type="xs:string" name="contents" minOccurs="1" maxOccurs="1"/>
+                                      <xs:element type="xs:double" name="weight" minOccurs="1" maxOccurs="1"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="passenger_ticket" minOccurs="1" maxOccurs="1">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:int" name="ticket_id" minOccurs="1" maxOccurs="1"/>
+                                      <xs:element type="xs:string" name="ticket_destination" minOccurs="1" maxOccurs="1"/>
+                                      <xs:element type="xs:int" name="ticket_seat" minOccurs="1" maxOccurs="1"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
