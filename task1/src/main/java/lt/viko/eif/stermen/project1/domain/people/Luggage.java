@@ -5,7 +5,14 @@ import javax.persistence.*;
 import jakarta.xml.bind.annotation.*;
 
 /**
- *
+ * This class is part of the object tree. It will be under the Passenger or CrewMember classes.
+ * The luggage is the personal effects of a person.
+ * The luggage has a unique id (for database purposes).
+ * The contents are the description or a list of items that are stored within this luggage.
+ * The weight is how much the luggage weights, depicted in kg.
+ * The object also has XML attributes for marshalling and unmarshalling.
+ * The object xml accessor type is set to property (getters and setters) as per Java Beans conventions.
+ * The object also has an entity tag for the database mapping.
  */
 @XmlType(propOrder = {"id", "contents", "weight"})
 @XmlRootElement(name = "Luggage")
@@ -21,15 +28,17 @@ public class Luggage {
     private double weight;
 
     /**
-     *
+     * An empty default constructor for JAXB transformations.
      */
     public Luggage() {
     }
 
     /**
-     * @param id
-     * @param contents
-     * @param weight
+     * This constructor should be avoided.
+     *
+     * @param id       the id of the luggage.
+     * @param contents the description of the luggage.
+     * @param weight   the weight of the luggage, denoted in kg.
      */
     public Luggage(int id, String contents, double weight) {
         this.id = id;
@@ -37,6 +46,10 @@ public class Luggage {
         this.weight = weight;
     }
 
+    /**
+     * @param contents the description of the luggage.
+     * @param weight   the weight of the luggage, denoted in kg.
+     */
     public Luggage(String contents, double weight) {
         this.contents = contents;
         this.weight = weight;
@@ -47,7 +60,9 @@ public class Luggage {
     }
 
     /**
-     * @param id
+     * Setter for JAXB transformations.
+     *
+     * @param id the id of the luggage.
      */
     @XmlElement(name = "id")
     public void setId(int id) {
@@ -59,7 +74,9 @@ public class Luggage {
     }
 
     /**
-     * @param contents
+     * Setter for JAXB transformations.
+     *
+     * @param contents the description of the luggage.
      */
     @XmlElement(name = "contents")
     public void setContents(String contents) {
@@ -71,7 +88,9 @@ public class Luggage {
     }
 
     /**
-     * @param weight
+     * Setter for JAXB transformations.
+     *
+     * @param weight the weight of the luggage, denoted in kg.
      */
     @XmlElement(name = "weight")
     public void setWeight(double weight) {
@@ -79,7 +98,9 @@ public class Luggage {
     }
 
     /**
-     * @return
+     * Overridden toString method to represent object in XML like fashion when printed to console.
+     *
+     * @return String all luggage data fields.
      */
     @Override
     public String toString() {

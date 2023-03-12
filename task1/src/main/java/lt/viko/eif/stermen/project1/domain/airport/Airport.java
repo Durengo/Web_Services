@@ -14,7 +14,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This is the root class of the domain model.
+ * The airport consists of the following data fields.
+ * The airport has a unique id (for database purposes).
+ * Name represents the name of the airport.
+ * Size represents the amount of passengers an airport can hold as well as the amount of planes that it can hold.
+ * The latitude is the location of the airport - measured distance north or south of the equator.
+ * The longitude is the location of the airport - measured distance east or west of the prime meridian.
+ * The country is the location of the airport - airport location on a political map.
+ * The city is the location of the airport - airport location within the resided country.
+ * The traffic control tower is the tower which monitors all airplane activities, defines airspace, manages runways, and logs telemetry.
+ * The airport also has a list of airplanes, which holds all other objects - like passengers, crew members, etc.
+ * The object also has XML attributes for marshalling and unmarshalling.
+ * The object xml accessor type is set to property (getters and setters) as per Java Beans conventions.
+ * The object also has an entity tag for the database mapping.
+ * All OneToOne and OneToMany relationships are cascaded.
+ * All OneToOne and OneToMany relationships have LazyCollectionOption off so when objects are retrieved from the database, they can be instantiated.
  */
 @XmlType(propOrder = {"id", "name", "size", "latitude", "longitude", "country", "city", "trafficControlTower", "airplaneList"})
 @XmlRootElement(name = "airport")
@@ -40,20 +55,46 @@ public class Airport {
     private List<Airplane> airplaneList = new ArrayList<Airplane>();
 
     /**
-     *
+     * An empty default constructor for JAXB transformations.
      */
     public Airport() {
     }
 
+    /**
+     * This constructor should be avoided.
+     *
+     * @param id                  the id of the airport. Should not be set, because the whole object tree ID's have GenerationType set to AUTO.
+     * @param name                the name of the airport.
+     * @param size                the size of the airport as enum.
+     * @param latitude            the latitude location of the airport.
+     * @param longitude           the longitude location of the airport.
+     * @param country             the country location of the airport.
+     * @param city                the city location of the airport.
+     * @param trafficControlTower the traffic control tower object of the airport.
+     * @param airplaneList        the airplane list of the airport.
+     */
+    public Airport(int id, String name, AirportSize size, double latitude, double longitude, String country, String city, TrafficControlTower trafficControlTower, List<Airplane> airplaneList) {
+        this.id = id;
+        this.name = name;
+        this.size = size;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.country = country;
+        this.city = city;
+        this.trafficControlTower = trafficControlTower;
+        this.airplaneList = airplaneList;
+    }
 
     /**
-     * @param id
-     * @param name
-     * @param size
-     * @param latitude
-     * @param longitude
-     * @param country
-     * @param city
+     * This constructor should be avoided.
+     *
+     * @param id        the id of the airport. Should not be set, because the whole object tree ID's have GenerationType set to AUTO.
+     * @param name      the name of the airport.
+     * @param size      the size of the airport as enum.
+     * @param latitude  the latitude location of the airport.
+     * @param longitude the longitude location of the airport.
+     * @param country   the country location of the airport.
+     * @param city      the city location of the airport.
      */
     public Airport(int id, String name, AirportSize size, double latitude, double longitude, String country, String city) {
         this.id = id;
@@ -65,6 +106,14 @@ public class Airport {
         this.city = city;
     }
 
+    /**
+     * @param name      the name of the airport.
+     * @param size      the size of the airport as enum.
+     * @param latitude  the latitude location of the airport.
+     * @param longitude the longitude location of the airport.
+     * @param country   the country location of the airport.
+     * @param city      the city location of the airport.
+     */
     public Airport(String name, AirportSize size, double latitude, double longitude, String country, String city) {
         this.name = name;
         this.size = size;
@@ -78,6 +127,11 @@ public class Airport {
         return id;
     }
 
+    /**
+     * Setter for JAXB transformations.
+     *
+     * @param id the airport id.
+     */
     @XmlElement(name = "airport_id")
     public void setId(int id) {
         this.id = id;
@@ -88,7 +142,9 @@ public class Airport {
     }
 
     /**
+     * Setter for JAXB transformations.
      *
+     * @param name the airport name.
      */
     @XmlElement(name = "airport_name")
     public void setName(String name) {
@@ -100,7 +156,9 @@ public class Airport {
     }
 
     /**
+     * Setter for JAXB transformations.
      *
+     * @param size the airport size as enum.
      */
     @XmlElement(name = "airport_size")
     public void setSize(AirportSize size) {
@@ -112,7 +170,9 @@ public class Airport {
     }
 
     /**
-     * @param latitude
+     * Setter for JAXB transformations.
+     *
+     * @param latitude the airport location in latitude.
      */
     @XmlElement(name = "airport_latitude")
     public void setLatitude(double latitude) {
@@ -124,7 +184,9 @@ public class Airport {
     }
 
     /**
-     * @param longitude
+     * Setter for JAXB transformations.
+     *
+     * @param longitude the airport location in longitude.
      */
     @XmlElement(name = "airport_longitude")
     public void setLongitude(double longitude) {
@@ -136,7 +198,9 @@ public class Airport {
     }
 
     /**
-     * @param country
+     * Setter for JAXB transformations.
+     *
+     * @param country the airport location.
      */
     @XmlElement(name = "airport_country")
     public void setCountry(String country) {
@@ -148,7 +212,9 @@ public class Airport {
     }
 
     /**
-     * @param city
+     * Setter for JAXB transformations.
+     *
+     * @param city the airport location.
      */
     @XmlElement(name = "airport_city")
     public void setCity(String city) {
@@ -160,7 +226,9 @@ public class Airport {
     }
 
     /**
-     * @param trafficControlTower
+     * Setter for JAXB transformations.
+     *
+     * @param trafficControlTower the airport traffic control tower.
      */
     @XmlElement(name = "airport_traffic_control_tower")
     public void setTrafficControlTower(TrafficControlTower trafficControlTower) {
@@ -172,7 +240,9 @@ public class Airport {
     }
 
     /**
-     * @param airplaneList
+     * Setter for JAXB transformations.
+     *
+     * @param airplaneList the list of airplanes in the airport.
      */
     @XmlElement(name = "airplane")
     @XmlElementWrapper(name = "airplanes")
@@ -181,7 +251,9 @@ public class Airport {
     }
 
     /**
-     * @return String
+     * Overridden toString method to represent object in XML like fashion when printed to console.
+     *
+     * @return String all airport data fields.
      */
     @Override
     public String toString() {
@@ -196,6 +268,8 @@ public class Airport {
     }
 
     /**
+     * Instead of getting the airplane list, simply use this method to add plane.
+     *
      * @param plane
      */
     public void addAirplane(Airplane plane) {
@@ -203,7 +277,8 @@ public class Airport {
     }
 
     /**
-     *
+     * When retrieving an object from the database or a file or generating it, the ID's of the object tree must be set to 0.
+     * This is done because the database uses GenerationType AUTO for all object tree ID's.
      */
     public void resetIds() {
         this.id = 0;

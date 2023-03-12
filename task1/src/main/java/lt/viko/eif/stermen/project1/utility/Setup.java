@@ -15,18 +15,19 @@ import java.util.List;
 import java.util.Random;
 
 /**
- *
+ * This class generates a semi-random Airport object with filled data.
+ * Some data was generated using https://www.mockaroo.com/ csv generator.
  */
 public class Setup {
     /**
-     *
+     * Utility class cannot have an instance. Throw exception if instantiated.
      */
     private Setup() {
         throw new java.lang.UnsupportedOperationException("This is a utility class and it cannot be instantiated.");
     }
 
     /**
-     * @return
+     * @return generates semi-random Airport object and returns it.
      */
     public static Airport generateXml() {
         List<String> destinations = new ArrayList<String>();
@@ -114,6 +115,17 @@ public class Setup {
 
         Random random = new Random();
 
+        {
+            int size = random.nextInt(100);
+            if (size < 35) {
+                airport1.setSize(AirportSize.SmallAirport);
+            } else if (size >= 35 && size < 75) {
+                airport1.setSize(AirportSize.MediumAirport);
+            } else {
+                airport1.setSize(AirportSize.LargeAirport);
+            }
+        }
+
         TrafficControlTower trafficControlTower = new TrafficControlTower();
         trafficControlTower.setTelemetryList(telemetryList);
         trafficControlTower.getRunwayList().add(new Runway(1000, 150));
@@ -184,7 +196,9 @@ public class Setup {
 //            airportList.get(i % 10).addAirplane(airplaneList.get(i));
 //        }
         for (Airplane plane : airplaneList) {
-            airport1.addAirplane(plane);
+            while (airport1.getAirplaneList().size() < airport1.getSize().getAirplaneAmount()) {
+                airport1.addAirplane(plane);
+            }
         }
 
         return airport1;

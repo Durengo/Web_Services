@@ -6,7 +6,7 @@ import javax.jms.JMSException;
 import javax.jms.Session;
 
 /**
- *
+ * This is the base class for MessageReceiver and MessageSender. It provides the basic functionality to start/stop the entire connection and/or a session.
  */
 public class Connection {
     protected javax.jms.Connection connection = null;
@@ -14,8 +14,8 @@ public class Connection {
     private ActiveMQConnectionFactory connectionFactory;
 
     /**
-     *
-     * @param factory
+     * This constructor creates the initial session with all the required parameters.
+     * @param factory the ActiveMQConnectionFactory object created from the ConnectionHandler class wrapper.
      */
     public Connection(ActiveMQConnectionFactory factory) {
         try {
@@ -28,7 +28,7 @@ public class Connection {
     }
 
     /**
-     *
+     * Starts the session with the already enabled connection, so that an action can be taken.
      */
     public void startSession() {
         try {
@@ -39,7 +39,7 @@ public class Connection {
     }
 
     /**
-     *
+     * Stops the session with the already enabled connection, to indicate that an action has been taken.
      */
     public void stopSession() {
         try {
@@ -50,7 +50,7 @@ public class Connection {
     }
 
     /**
-     *
+     * Opens the connection to the server. Afterwards a session must be opened to execute an action.
      */
     public void openConnection() {
         try {
@@ -61,7 +61,7 @@ public class Connection {
     }
 
     /**
-     *
+     * Closes the connection to the server. The connection will not be restored unless a new factory is created.
      */
     public void closeConnection() {
         try {

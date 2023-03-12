@@ -6,7 +6,7 @@ import javax.jms.*;
 import java.io.StringWriter;
 
 /**
- *
+ * This class enables the sending of messages to the ActiveMQ server queue.
  */
 public class MessageSender extends Connection {
     private String queueName = "MY_QUEUE";
@@ -15,7 +15,7 @@ public class MessageSender extends Connection {
     private MessageProducer producer = null;
 
     /**
-     * @param connectionFactory
+     * @param connectionFactory provides a connection factory to the super class which is the Connection class. Enables connection functionality.
      */
     public MessageSender(ActiveMQConnectionFactory connectionFactory) {
         super(connectionFactory);
@@ -30,7 +30,8 @@ public class MessageSender extends Connection {
 
 
     /**
-     * @param text
+     * Sends a message to the server queue.
+     * @param text the message to be sent to the server.
      */
     public void sendMessage(String text) {
         try {

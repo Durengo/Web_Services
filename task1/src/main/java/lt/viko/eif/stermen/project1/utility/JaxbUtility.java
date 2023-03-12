@@ -15,7 +15,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 /**
- *
+ * A utility that allows the marshalling and unmarshalling of mapped classes to and from XML format.
  */
 public final class JaxbUtility {
     private static JAXBContext context = null;
@@ -31,7 +31,7 @@ public final class JaxbUtility {
     private static String filepath = null;
 
     /**
-     *
+     * Utility class cannot have an instance. Throw exception if instantiated.
      */
     private JaxbUtility() {
         throw new java.lang.UnsupportedOperationException("This is a utility class and it cannot be instantiated.");
@@ -58,7 +58,9 @@ public final class JaxbUtility {
     }
 
     /**
-     * @param xsdSchema
+     * If an .xsd schema exists for the object tree it should be provided with this method.
+     * Further marshalling and unmarshalling will be validated with the provided schema.
+     * @param xsdSchema file location of .xsd schema relative to the programs execution location.
      */
     public static void setXsdSchema(String xsdSchema) {
         JaxbUtility.xsdSchema = xsdSchema;
@@ -78,7 +80,8 @@ public final class JaxbUtility {
     }
 
     /**
-     * @param cl
+     * Sets the context class for all marshalling and unmarshalling methods.
+     * @param cl class type
      */
     public static void setContext(Class cl) {
         try {
@@ -90,7 +93,8 @@ public final class JaxbUtility {
     }
 
     /**
-     * @param type
+     * Sets the output type by specifying the JaxbUtilityOutputType.
+     * @param type enum type of Console, StringWriter, File.
      */
     public static void setOutputType(JaxbUtilityOutputType type) {
         switch (type) {
@@ -103,7 +107,7 @@ public final class JaxbUtility {
     }
 
     /**
-     *
+     * Prints the currently stored object in .xml format if it exists.
      */
     public static void printXml() {
         if (writer != null) {
@@ -112,7 +116,12 @@ public final class JaxbUtility {
     }
 
     /**
-     * @param obj
+     * Marshal object to .xml format. Validates the object if a .xsd schema is provided.
+     * Outputs based on the outputType selected.
+     * Console - prints output to console.
+     * StringWriter - stores output to writer.
+     * File - stores output to file. filepath property must be specified.
+     * @param obj the object to be marshalled.
      */
     public static void transformToXML(Object obj) {
         if (context != null && outputType != null) {
@@ -140,9 +149,14 @@ public final class JaxbUtility {
     }
 
     /**
-     * @param obj
-     * @param <T>
-     * @return
+     * Unmarshal class from .xml format to an object. Validates the object if a .xsd schema is provided.
+     * Outputs based on the outputType selected.
+     * Console - no implemented.
+     * StringWriter - reads from writer.
+     * File - reads from file. filepath property must be specified.
+     * @param obj provide class type of object that was marshalled.
+     * @param <T> type of object to be returned - based on class type.
+     * @return transform XML to Object and that object.
      */
     public static <T> T transformToPOJO(Class<T> obj) {
         if (context != null && outputType != null) {
@@ -150,16 +164,17 @@ public final class JaxbUtility {
                 try {
                     Unmarshaller unmarshaller = null;
                     Object unmarshalledObject = null;
-                    T result = null;
+//                    T result = null;
+                    unmarshaller = context.createUnmarshaller();
+                    if (xsdSchema != null) {
+                        unmarshaller.setSchema(objectSchema);
+                    }
                     switch (outputType) {
                         case StringWriter:
-                            unmarshaller = context.createUnmarshaller();
-                            if (xsdSchema != null) {
-                                unmarshaller.setSchema(objectSchema);
-                            }
+
                             reader = new StringReader(writer.toString());
                             unmarshalledObject = unmarshaller.unmarshal(reader);
-                            result = obj.newInstance();
+//                            result = obj.newInstance();
                             return obj.cast(unmarshalledObject);
                         case File:
                             unmarshaller = context.createUnmarshaller();
@@ -169,7 +184,7 @@ public final class JaxbUtility {
                                 unmarshaller.setSchema(objectSchema);
                             }
                             unmarshalledObject = unmarshaller.unmarshal(new File(filepath));
-                            result = obj.newInstance();
+//                            result = obj.newInstance();
                             return obj.cast(unmarshalledObject);
                         default:
                             throw new ExecutionControl.NotImplementedException("NO FUNCTIONALITY");

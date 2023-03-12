@@ -5,7 +5,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import javax.jms.*;
 
 /**
- *
+ * This class enables the receiving of messages from the ActiveMQ server queue.
  */
 public class MessageReceiver extends Connection {
     private String queueName = "MY_QUEUE";
@@ -14,7 +14,7 @@ public class MessageReceiver extends Connection {
     private MessageProducer producer = null;
 
     /**
-     * @param connectionFactory
+     * @param connectionFactory provides a connection factory to the super class which is the Connection class. Enables connection functionality.
      */
     public MessageReceiver(ActiveMQConnectionFactory connectionFactory) {
         super(connectionFactory);
@@ -28,7 +28,7 @@ public class MessageReceiver extends Connection {
     }
 
     /**
-     *
+     * Listens to the server queue for a message, dequeues it and prints it to the console.
      */
     public void receiveMessage() {
         try {
@@ -47,8 +47,8 @@ public class MessageReceiver extends Connection {
     }
 
     /**
-     *
-     * @return
+     * Listens to the server queue for a message, dequeues it, converts the message to a String and returns it.
+     * @return String from the dequeued message.
      */
     public String getMessage() {
         String text = new String();
@@ -67,10 +67,7 @@ public class MessageReceiver extends Connection {
         return text;
     }
 
-    /**
-     *
-     */
-    public void receiveAllMessages() {
+/*    public void receiveAllMessages() {
         try {
             MessageConsumer consumer = session.createConsumer(destination);
             Message message = consumer.receive(10);
@@ -83,5 +80,5 @@ public class MessageReceiver extends Connection {
         } catch (JMSException e) {
             System.out.println("EXCEPTION: " + e.getMessage());
         }
-    }
+    }*/
 }

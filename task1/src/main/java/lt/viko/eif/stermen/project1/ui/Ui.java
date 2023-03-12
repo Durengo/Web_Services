@@ -16,20 +16,19 @@ import java.util.Objects;
 import static lt.viko.eif.stermen.project1.input.Input.*;
 
 /**
- *
+ * A simple user interface class that utilizes the console to display the functionality of JAXB transformations, Database functionality, and others that are necessary for task 1.
  */
 public class Ui {
     final static Logger logger = Logger.getLogger("LOGGER");
     ConnectionHandler connection = null;
     private Airport airport = null;
     private boolean airportSaved = false;
-    private List<Airport> airportDatabase = null;
     private boolean messageSent = false;
     private boolean messageReceived = false;
     private boolean fileLoaded = false;
 
     /**
-     *
+     * A default constructor that creates the initial connection to the database, creates the ActiveMQ handlers, and sets the JAXB properties.
      */
     public Ui() {
         HibernateUtility.getConnectionHandler();
@@ -41,7 +40,7 @@ public class Ui {
     }
 
     /**
-     *
+     * The initial main menu from which the user will navigate to all the functionality.
      */
     public void begin() {
         int input = -1;
@@ -85,7 +84,7 @@ public class Ui {
     }
 
     /**
-     *
+     * Allows the display of the airport object if it is not null. Can be displayed as a console print of object or as XML file.
      */
     private void displayXml() {
         logger.debug("DISPLAYING XML:");
@@ -113,7 +112,7 @@ public class Ui {
     }
 
     /**
-     *
+     * Displays the all the airport objects in the database.
      */
     private void displayDatabase() {
         logger.debug("DISPLAYING DATABASE:");
@@ -127,7 +126,7 @@ public class Ui {
     }
 
     /**
-     *
+     * Generates a semi-randomized xml file from the Setup class and saves it as the airport object.
      */
     private void generateXml() {
         if (!airportSaved && airport != null) {
@@ -144,7 +143,7 @@ public class Ui {
     }
 
     /**
-     *
+     * Saves the airport object if it is not null. Can be saved to the database or saved to file.
      */
     private void saveXml() {
         if (airport == null) {
@@ -180,7 +179,10 @@ public class Ui {
     }
 
     /**
-     *
+     * Loads a new airport object. If the current airport object is not null informs user that it will be removed from the instance.
+     * Airport object can be loaded from the database or as file.
+     * main.xml is a large file.
+     * small.xml is a small file.
      */
     private void loadXml() {
         if (airport != null) {
@@ -238,7 +240,7 @@ public class Ui {
     }
 
     /**
-     *
+     * Utilizes the ConnectionHandler class to connect to an ActiveMQ server and send the airport object as XML String to the server queue.
      */
     private void sendXml() {
         if (airport == null) {
@@ -255,7 +257,7 @@ public class Ui {
     }
 
     /**
-     *
+     * Utilizes the ConnectionHandler class to connect to an ActiveMQ server and receive an airport object as XML String from the server queue.
      */
     private void receiveXml() {
         if (airport != null) {
@@ -282,7 +284,8 @@ public class Ui {
     }
 
     /**
-     *
+     * Debugging functionality.
+     * 1. Clearing all the records from the database. This does not reset the sequence counter.
      */
     private void debug() {
         int input = -1;

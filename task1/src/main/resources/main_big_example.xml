@@ -1013,7 +1013,7 @@
             <airplane_id>0</airplane_id>
             <destination_airport>Waterbury Airport</destination_airport>
             <airplane_name>Light Jet</airplane_name>
-            <airplane_type>LIGHT_JET</airplane_type>
+            <airplane_type>LightJet</airplane_type>
             <maximum_distance>3723.0</maximum_distance>
             <base_weight>5253.0</base_weight>
             <current_weight>5253.0</current_weight>
@@ -1186,7 +1186,7 @@
             <airplane_id>0</airplane_id>
             <destination_airport>Clarke County Airport</destination_airport>
             <airplane_name>Jumbo Jet</airplane_name>
-            <airplane_type>JUMBO_JET</airplane_type>
+            <airplane_type>JumboJet</airplane_type>
             <maximum_distance>14430.0</maximum_distance>
             <base_weight>190000.0</base_weight>
             <current_weight>190000.0</current_weight>
@@ -13077,7 +13077,7 @@
             <airplane_id>0</airplane_id>
             <destination_airport>San Diego Airport</destination_airport>
             <airplane_name>Mid Size Jet</airplane_name>
-            <airplane_type>MID_SIZE_JET</airplane_type>
+            <airplane_type>MidSizeJet</airplane_type>
             <maximum_distance>5926.0</maximum_distance>
             <base_weight>10038.0</base_weight>
             <current_weight>10038.0</current_weight>
@@ -13250,7 +13250,7 @@
             <airplane_id>0</airplane_id>
             <destination_airport>Billings Airport</destination_airport>
             <airplane_name>Light Jet</airplane_name>
-            <airplane_type>LIGHT_JET</airplane_type>
+            <airplane_type>LightJet</airplane_type>
             <maximum_distance>3723.0</maximum_distance>
             <base_weight>5253.0</base_weight>
             <current_weight>5253.0</current_weight>
@@ -13423,7 +13423,7 @@
             <airplane_id>0</airplane_id>
             <destination_airport>Fresno Airport</destination_airport>
             <airplane_name>Light Jet</airplane_name>
-            <airplane_type>LIGHT_JET</airplane_type>
+            <airplane_type>LightJet</airplane_type>
             <maximum_distance>3723.0</maximum_distance>
             <base_weight>5253.0</base_weight>
             <current_weight>5253.0</current_weight>
@@ -13596,7 +13596,7 @@
             <airplane_id>0</airplane_id>
             <destination_airport>Rancho Cucamonga Airport</destination_airport>
             <airplane_name>Light Jet</airplane_name>
-            <airplane_type>LIGHT_JET</airplane_type>
+            <airplane_type>LightJet</airplane_type>
             <maximum_distance>3723.0</maximum_distance>
             <base_weight>5253.0</base_weight>
             <current_weight>5253.0</current_weight>
@@ -13769,7 +13769,7 @@
             <airplane_id>0</airplane_id>
             <destination_airport>Rancho Cucamonga Airport</destination_airport>
             <airplane_name>Mid Size Jet</airplane_name>
-            <airplane_type>MID_SIZE_JET</airplane_type>
+            <airplane_type>MidSizeJet</airplane_type>
             <maximum_distance>5926.0</maximum_distance>
             <base_weight>10038.0</base_weight>
             <current_weight>10038.0</current_weight>
@@ -13942,7 +13942,7 @@
             <airplane_id>0</airplane_id>
             <destination_airport>San Diego Airport</destination_airport>
             <airplane_name>Mid Size Jet</airplane_name>
-            <airplane_type>MID_SIZE_JET</airplane_type>
+            <airplane_type>MidSizeJet</airplane_type>
             <maximum_distance>5926.0</maximum_distance>
             <base_weight>10038.0</base_weight>
             <current_weight>10038.0</current_weight>
@@ -14115,7 +14115,7 @@
             <airplane_id>0</airplane_id>
             <destination_airport>Reading Airport</destination_airport>
             <airplane_name>Light Jet</airplane_name>
-            <airplane_type>LIGHT_JET</airplane_type>
+            <airplane_type>LightJet</airplane_type>
             <maximum_distance>3723.0</maximum_distance>
             <base_weight>5253.0</base_weight>
             <current_weight>5253.0</current_weight>

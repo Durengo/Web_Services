@@ -6,7 +6,18 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- *
+ * This class is part of the object tree. It will be under the Traffic Control Tower class.
+ * This class holds any meteorological data collected around the airspace.
+ * An airspace can hold an infinite amount of telemetry.
+ * The telemetry has a unique id (for database purposes).
+ * Area is defined as the average radius of the airspace.
+ * Temperature is denoted in Celsius.
+ * Wind speed is denoted in meters per second.
+ * Humidity is denoted in percentages.
+ * Local atmospheric pressure is denoted in atmospheres.
+ * The object also has XML attributes for marshalling and unmarshalling.
+ * The object xml accessor type is set to property (getters and setters) as per Java Beans conventions.
+ * The object also has an entity tag for the database mapping.
  */
 @XmlType(propOrder = {"id", "date", "area", "temperature", "windSpeed", "humidity", "localAtmosphericPressure"})
 @XmlRootElement(name = "telemetry")
@@ -26,19 +37,21 @@ public class Telemetry {
     private double localAtmosphericPressure;
 
     /**
-     *
+     * An empty default constructor for JAXB transformations.
      */
     public Telemetry() {
     }
 
     /**
-     * @param id
-     * @param date
-     * @param area
-     * @param temperature
-     * @param windSpeed
-     * @param humidity
-     * @param localAtmosphericPressure
+     * This constructor should be avoided.
+     *
+     * @param id                       the id of the telemetry. Should not be set, because the whole object tree ID's have GenerationType set to AUTO.
+     * @param date                     the date when the telemetry was logged.
+     * @param area                     the radius in meters from the traffic control tower in which the telemetry was logged.
+     * @param temperature              the temperature in Celsius.
+     * @param windSpeed                the wind speed in meters per second.
+     * @param humidity                 the humidity in percentages.
+     * @param localAtmosphericPressure the local atmospheric pressure in atmospheres.
      */
     public Telemetry(int id, Date date, double area, double temperature, double windSpeed, double humidity, double localAtmosphericPressure) {
         this.id = id;
@@ -50,6 +63,14 @@ public class Telemetry {
         this.localAtmosphericPressure = localAtmosphericPressure;
     }
 
+    /**
+     * @param date                     the date when the telemetry was logged.
+     * @param area                     the radius in meters from the traffic control tower in which the telemetry was logged.
+     * @param temperature              the temperature in Celsius.
+     * @param windSpeed                the wind speed in meters per second.
+     * @param humidity                 the humidity in percentages.
+     * @param localAtmosphericPressure the local atmospheric pressure in atmospheres.
+     */
     public Telemetry(Date date, double area, double temperature, double windSpeed, double humidity, double localAtmosphericPressure) {
         this.date = date;
         this.area = area;
@@ -64,7 +85,9 @@ public class Telemetry {
     }
 
     /**
-     * @param id
+     * Setter for JAXB transformations.
+     *
+     * @param id the id of the telemetry.
      */
     @XmlElement(name = "telemetry_id")
     public void setId(int id) {
@@ -76,7 +99,9 @@ public class Telemetry {
     }
 
     /**
-     * @param date
+     * Setter for JAXB transformations.
+     *
+     * @param date the date when the telemetry was logged.
      */
     @XmlElement(name = "telemetry_date_time")
     public void setDate(Date date) {
@@ -88,7 +113,9 @@ public class Telemetry {
     }
 
     /**
-     * @param area
+     * Setter for JAXB transformations.
+     *
+     * @param area the radius in meters from the traffic control tower in which the telemetry was logged.
      */
     @XmlElement(name = "telemetry_area")
     public void setArea(double area) {
@@ -100,7 +127,9 @@ public class Telemetry {
     }
 
     /**
-     * @param temperature
+     * Setter for JAXB transformations.
+     *
+     * @param temperature the temperature in Celsius.
      */
     @XmlElement(name = "telemetry_temperature")
     public void setTemperature(double temperature) {
@@ -112,7 +141,9 @@ public class Telemetry {
     }
 
     /**
-     * @param windSpeed
+     * Setter for JAXB transformations.
+     *
+     * @param windSpeed the wind speed in meters per second.
      */
     @XmlElement(name = "telemetry_wind_speed")
     public void setWindSpeed(double windSpeed) {
@@ -124,7 +155,9 @@ public class Telemetry {
     }
 
     /**
-     * @param humidity
+     * Setter for JAXB transformations.
+     *
+     * @param humidity the humidity in percentages.
      */
     @XmlElement(name = "telemetry_humidity")
     public void setHumidity(double humidity) {
@@ -136,7 +169,9 @@ public class Telemetry {
     }
 
     /**
-     * @param localAtmosphericPressure
+     * Setter for JAXB transformations.
+     *
+     * @param localAtmosphericPressure the local atmospheric pressure in atmospheres.
      */
     @XmlElement(name = "telemetry_local_atmospheric_pressure")
     public void setLocalAtmosphericPressure(double localAtmosphericPressure) {
@@ -144,7 +179,9 @@ public class Telemetry {
     }
 
     /**
-     * @return
+     * Overridden toString method to represent object in XML like fashion when printed to console.
+     *
+     * @return String all telemetry data fields.
      */
     @Override
     public String toString() {

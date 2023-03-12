@@ -5,7 +5,14 @@ import jakarta.xml.bind.annotation.*;
 import javax.persistence.*;
 
 /**
- *
+ * This class is part of the object tree. It will be under the Traffic Control Tower class.
+ * The runway is the place where planes land and take off.
+ * The runway has a unique id (for database purposes).
+ * An airport can have multiple runways.
+ * The dimension of the runway are denoted in meters.
+ * The object also has XML attributes for marshalling and unmarshalling.
+ * The object xml accessor type is set to property (getters and setters) as per Java Beans conventions.
+ * The object also has an entity tag for the database mapping.
  */
 @XmlType(propOrder = {"id", "length", "width"})
 @XmlRootElement(name = "runway")
@@ -21,15 +28,17 @@ public class Runway {
     private double width;
 
     /**
-     *
+     * An empty default constructor for JAXB transformations.
      */
     public Runway() {
     }
 
     /**
-     * @param id
-     * @param length
-     * @param width
+     * This constructor should be avoided.
+     *
+     * @param id     the id of the runway. Should not be set, because the whole object tree ID's have GenerationType set to AUTO.
+     * @param length the length of the runway in meters.
+     * @param width  the width of the runway in meters.
      */
     public Runway(int id, double length, double width) {
         this.id = id;
@@ -37,6 +46,10 @@ public class Runway {
         this.width = width;
     }
 
+    /**
+     * @param length the length of the runway in meters.
+     * @param width  the width of the runway in meters.
+     */
     public Runway(double length, double width) {
         this.length = length;
         this.width = width;
@@ -47,7 +60,9 @@ public class Runway {
     }
 
     /**
-     * @param id
+     * Setter for JAXB transformations.
+     *
+     * @param id the id of the runway.
      */
     @XmlElement(name = "runway_id")
     public void setId(int id) {
@@ -59,7 +74,9 @@ public class Runway {
     }
 
     /**
-     * @param length
+     * Setter for JAXB transformations.
+     *
+     * @param length the length of the runway in meters.
      */
     @XmlElement(name = "runway_length")
     public void setLength(double length) {
@@ -71,7 +88,9 @@ public class Runway {
     }
 
     /**
-     * @param width
+     * Setter for JAXB transformations.
+     *
+     * @param width the width of the runway in meters.
      */
     @XmlElement(name = "runway_width")
     public void setWidth(double width) {
@@ -79,7 +98,9 @@ public class Runway {
     }
 
     /**
-     * @return
+     * Overridden toString method to represent object in XML like fashion when printed to console.
+     *
+     * @return String all runway data fields.
      */
     @Override
     public String toString() {

@@ -104,7 +104,15 @@
                     <xs:element type="xs:int" name="airplane_id" minOccurs="1" maxOccurs="1"/>
                     <xs:element type="xs:string" name="destination_airport" minOccurs="1" maxOccurs="1"/>
                     <xs:element type="xs:string" name="airplane_name" minOccurs="1" maxOccurs="1"/>
-                    <xs:element type="xs:string" name="airplane_type" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="airplane_type" minOccurs="1" maxOccurs="1">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="LightJet"/>
+                          <xs:enumeration value="MidSizeJet"/>
+                          <xs:enumeration value="JumboJet"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
                     <xs:element type="xs:double" name="maximum_distance" minOccurs="1" maxOccurs="1"/>
                     <xs:element type="xs:double" name="base_weight" minOccurs="1" maxOccurs="1"/>
                     <xs:element type="xs:double" name="current_weight" minOccurs="1" maxOccurs="1"/>

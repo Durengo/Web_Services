@@ -14,7 +14,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import java.util.List;
 
 /**
- *
+ * A simple utility class that wraps over the org.hibernate library, also utilizes some org.h2 library functionality.
+ * This utility is the main way to interact with the database.
+ * It can save an object, return a list of objects, initialize the primary connection, or clear all records in the database.
  */
 public class HibernateUtility {
     private static StandardServiceRegistry registry;
@@ -23,14 +25,15 @@ public class HibernateUtility {
     private static Server server = null;
 
     /**
-     *
+     * Utility class cannot have an instance. Throw exception if instantiated.
      */
     private HibernateUtility() {
         throw new java.lang.UnsupportedOperationException("This is a utility class and it cannot be instantiated.");
     }
 
     /**
-     * @return
+     * Initializes the connection to the database.
+     * @return the sessionFactory, which can be used if needed for further processing, like transactions.
      */
     public static SessionFactory getConnectionHandler() {
         if (sessionFactory == null) {
@@ -52,7 +55,8 @@ public class HibernateUtility {
     }
 
     /**
-     *
+     * Removes all records in the database.
+     * DOES NOT RESET SEQUENCE COUNTER.
      */
     public static void clearDatabase() {
         List<Airport> items = loadObjects(Airport.class);
@@ -73,8 +77,10 @@ public class HibernateUtility {
     }
 
     /**
-     * @param obj
-     * @param <T>
+     * A methods that provides a way to save an object to the database.
+     * Ideally the object that will be saved should be mapped within the code-base, and listed in the hibernate.cfg file.
+     * @param obj the object to be saved to database.
+     * @param <T> the type of the object to be saved to database.
      */
     public static <T> void saveObject(T obj) {
         try (Session session = HibernateUtility.getConnectionHandler().openSession()) {
@@ -93,9 +99,10 @@ public class HibernateUtility {
     }
 
     /**
-     * @param classType
-     * @param <T>
-     * @return
+     * Ideally the object that will be loaded should be mapped within the code-base, and listed in the hibernate.cfg file.
+     * @param classType the object class type.
+     * @param <T> the object type list.
+     * @return the object list that will be returned based on the classType provided.
      */
     public static <T> List<T> loadObjects(Class<T> classType) {
         try (Session session = HibernateUtility.getConnectionHandler().openSession()) {
@@ -117,7 +124,7 @@ public class HibernateUtility {
     }
 
     /**
-     *
+     * Closes the connection to the database.
      */
     public static void shutdown() {
         if (registry != null) {

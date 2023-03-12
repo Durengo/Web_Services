@@ -4,16 +4,13 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
- *
+ * A simple input class that waits and reads user input by using the scanner class.
  */
 public class Input {
-    /**
-     *
-     */
     private static Scanner sc = new Scanner(System.in);
 
     /**
-     * @return
+     * @return reads the input and tries to convert it to an integer.
      */
     public static int gibi() {
         int converted;
@@ -28,9 +25,9 @@ public class Input {
     }
 
     /**
-     * @param min
-     * @param max
-     * @return
+     * @param min minimum integer amount to be inputted.
+     * @param max maximum integer amount to be inputted.
+     * @return input as integer.
      */
     public static int gibi(int min, int max) {
         while (true) {
@@ -44,7 +41,7 @@ public class Input {
     }
 
     /**
-     * @return
+     * @return reads the input and tries to convert it to a double.
      */
     public static double gibd() {
         double converted;
@@ -59,9 +56,9 @@ public class Input {
     }
 
     /**
-     * @param min
-     * @param max
-     * @return
+     * @param min minimum double amount to be inputted.
+     * @param max maximum double amount to be inputted.
+     * @return input as double.
      */
     public static double gibd(int min, int max) {
         while (true) {
@@ -75,7 +72,7 @@ public class Input {
     }
 
     /**
-     * @return
+     * @return reads the input and tries to convert it to a float.
      */
     public static float gibf() {
         float converted;
@@ -90,9 +87,9 @@ public class Input {
     }
 
     /**
-     * @param min
-     * @param max
-     * @return
+     * @param min minimum float amount to be inputted.
+     * @param max minimum float amount to be inputted.
+     * @return input as float.
      */
     public static float gibf(int min, int max) {
         while (true) {
@@ -106,7 +103,7 @@ public class Input {
     }
 
     /**
-     * @return
+     * @return reads the input and tries to convert it to a String.
      */
     public static String gibs() {
         while (true) {
@@ -120,7 +117,7 @@ public class Input {
     }
 
     /**
-     * @return
+     * @return reads the input and tries to return only if input is 'Y', 'y', 'N', 'n'
      */
     public static String GetYorN() {
         while (true) {

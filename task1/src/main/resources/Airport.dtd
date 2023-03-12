@@ -43,6 +43,7 @@
 			<!ELEMENT destination_airport (#PCDATA)>
 			<!ELEMENT airplane_name (#PCDATA)>
 			<!ELEMENT airplane_type (#PCDATA)>
+				<!ATTLIST airplane_type type (LightJet | MidSizeJet | JumboJet) "LightJet">
 			<!ELEMENT maximum_distance (#PCDATA)>
 			<!ELEMENT base_weight (#PCDATA)>
 			<!ELEMENT current_weight (#PCDATA)>
